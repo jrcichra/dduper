@@ -26,7 +26,8 @@ RUN cp btrfs.static /btrfs-progs-build
 
 # Install dduper
 FROM debian:buster-slim
-COPY --from=build /lib/$(uname -p)-linux-gnu/liblzo2.so.2 "/lib/$(uname -m)-linux-gnu/"
+COPY --from=build /lib/*-linux-gnu/liblzo2.so.2 /throwaway 
+RUN  mv /throwaway/liblzo2.so.2 "/lib/$(uname -m)-linux-gnu/" && rmdir throwaway
 COPY --from=build /btrfs-progs-build /btrfs-progs
 COPY --from=build /dduper /dduper
 

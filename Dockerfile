@@ -29,7 +29,8 @@ FROM debian:buster-slim
 COPY --from=build /lib/*-linux-gnu/liblzo2.so.2 /throwaway/liblzo2.so.2
 COPY --from=build /btrfs-progs-build /btrfs-progs
 COPY --from=build /dduper /dduper
-RUN  bash -c "mv /throwaway/liblzo2.so.2 /lib/$(uname -m)-linux-gnu/"
+RUN  ls -lrt /lib
+RUN  "mv /throwaway/liblzo2.so.2 /lib/`uname -m`-linux-gnu/"
 
 RUN mv /btrfs-progs/btrfs.static /
 RUN cp -rv /btrfs-progs/usr/local/bin/* /usr/local/bin && cp -rv /btrfs-progs/usr/local/include/* /usr/local/include/ && cp -rv /btrfs-progs/usr/local/lib/* /usr/local/lib

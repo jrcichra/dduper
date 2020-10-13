@@ -29,7 +29,7 @@ FROM debian:buster-slim
 COPY --from=build /lib/ /throwaway/
 COPY --from=build /btrfs-progs-build /btrfs-progs
 COPY --from=build /dduper /dduper
-RUN  ls -lrt /throwaway
+RUN  ls -lrt "/throwaway/`uname -m`"
 RUN  "mv /throwaway/`uname -m`-linux-gnu/liblzo2.so.2 /lib/`uname -m`-linux-gnu/ && rm -rf /throwaway"
 
 RUN mv /btrfs-progs/btrfs.static /

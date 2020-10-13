@@ -30,7 +30,7 @@ COPY --from=build /lib/ /throwaway/
 COPY --from=build /btrfs-progs-build /btrfs-progs
 COPY --from=build /dduper /dduper
 RUN  ls -lrt "/throwaway/`uname -m`-linux-gnu"
-RUN  "mv /throwaway/`uname -m`-linux-gnu/liblzo2.so.2 /lib/`uname -m`-linux-gnu/ && rm -rf /throwaway"
+RUN  "cp -prn /throwaway/`uname -m`-linux-gnu/ /lib/`uname -m`-linux-gnu/ && rm -rf /throwaway"
 
 RUN mv /btrfs-progs/btrfs.static /
 RUN cp -rv /btrfs-progs/usr/local/bin/* /usr/local/bin && cp -rv /btrfs-progs/usr/local/include/* /usr/local/include/ && cp -rv /btrfs-progs/usr/local/lib/* /usr/local/lib

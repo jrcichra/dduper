@@ -35,7 +35,7 @@ RUN cp -prn /throwaway/*-linux-gnu*/ /lib/
 RUN mv /btrfs-progs/btrfs.static /
 RUN cp -rv /btrfs-progs/usr/local/bin/* /usr/local/bin && cp -rv /btrfs-progs/usr/local/include/* /usr/local/include/ && cp -rv /btrfs-progs/usr/local/lib/* /usr/local/lib
 RUN btrfs inspect-internal dump-csum --help
-RUN apt-get update && apt-get install -y --no-install-recommends python3-pip python3-setuptools gfortran
+RUN apt-get update && apt-get install -y --no-install-recommends python3-pip python3-setuptools gfortran python3-dev
 WORKDIR /dduper
 RUN pip3 install -r requirements.txt && cp -v dduper /usr/sbin/
 RUN dduper --version

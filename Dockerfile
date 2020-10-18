@@ -4,7 +4,7 @@ MAINTAINER Lakshmipathi.G
 # Install needed dependencies.
 RUN apt-get update && apt-get install -y --no-install-recommends git autoconf automake gcc \
     make pkg-config e2fslibs-dev libblkid-dev zlib1g-dev liblzo2-dev \
-    python3-dev libzstd-dev python-pip python3-setuptools patch
+    python3-dev libzstd-dev python-pip python3-setuptools patch gfortran
 
 # Clone the repo
 RUN git clone https://github.com/Lakshmipathi/dduper.git && git clone https://github.com/kdave/btrfs-progs.git

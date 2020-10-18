@@ -4,7 +4,7 @@ MAINTAINER Lakshmipathi.G
 # Install needed dependencies.
 RUN apt-get update && apt-get install -y --no-install-recommends git autoconf automake gcc \
     make pkg-config e2fslibs-dev libblkid-dev zlib1g-dev liblzo2-dev \
-    python3-dev libzstd-dev python-pip python3-setuptools patch gfortran
+    python3-dev libzstd-dev python-pip python3-setuptools patch
 
 # Clone the repo
 RUN git clone https://github.com/Lakshmipathi/dduper.git && git clone https://github.com/kdave/btrfs-progs.git
@@ -35,7 +35,7 @@ RUN cp -prn /throwaway/*-linux-gnu*/ /lib/
 RUN mv /btrfs-progs/btrfs.static /
 RUN cp -rv /btrfs-progs/usr/local/bin/* /usr/local/bin && cp -rv /btrfs-progs/usr/local/include/* /usr/local/include/ && cp -rv /btrfs-progs/usr/local/lib/* /usr/local/lib
 RUN btrfs inspect-internal dump-csum --help
-RUN apt-get update && apt-get install -y --no-install-recommends python3-pip python3-setuptools
+RUN apt-get update && apt-get install -y --no-install-recommends python3-pip python3-setuptools gfortran
 WORKDIR /dduper
 RUN pip3 install -r requirements.txt && cp -v dduper /usr/sbin/
 RUN dduper --version

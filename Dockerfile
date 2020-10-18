@@ -30,7 +30,7 @@ COPY --from=build /lib/ /throwaway/
 COPY --from=build /btrfs-progs-build /btrfs-progs
 COPY --from=build /dduper /dduper
 RUN ls -lrt /throwaway/
-RUN cp -prn "/throwaway/`uname -m | sed 's/v7l//g'`-linux-gnu/" "/lib/"
+RUN cp -prn "/throwaway/*-linux-gnu*/" "/lib/"
 
 RUN mv /btrfs-progs/btrfs.static /
 RUN cp -rv /btrfs-progs/usr/local/bin/* /usr/local/bin && cp -rv /btrfs-progs/usr/local/include/* /usr/local/include/ && cp -rv /btrfs-progs/usr/local/lib/* /usr/local/lib

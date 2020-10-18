@@ -29,6 +29,7 @@ FROM debian:buster-slim
 COPY --from=build /lib/ /throwaway/
 COPY --from=build /btrfs-progs-build /btrfs-progs
 COPY --from=build /dduper /dduper
+RUN ls -lrt /throwaway/
 RUN cp -prn "/throwaway/`uname -m`-linux-gnu/" "/lib/"
 
 RUN mv /btrfs-progs/btrfs.static /
